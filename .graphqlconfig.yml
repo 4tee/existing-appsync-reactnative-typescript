@@ -15,3 +15,6 @@ projects:
         frontend: javascript
         framework: react-native
         maxDepth: 2
+extensions:
+  amplify:
+    version: 3

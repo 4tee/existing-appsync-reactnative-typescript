@@ -19,6 +19,8 @@ export const createEvent = /* GraphQL */ `
       name
       where
       when
+      why
+      how
       description
       comments {
         nextToken
@@ -33,6 +35,8 @@ export const deleteEvent = /* GraphQL */ `
       name
       where
       when
+      why
+      how
       description
       comments {
         nextToken

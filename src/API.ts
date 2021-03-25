@@ -8,6 +8,8 @@ export type Event = {
   name?: string | null,
   where?: string | null,
   when?: string | null,
+  why?: string | null,
+  how?: string | null,
   description?: string | null,
   // Paginate through all comments belonging to an individual post.
   comments?: CommentConnection,
@@ -86,6 +88,8 @@ export type CreateEventMutation = {
     name?: string | null,
     where?: string | null,
     when?: string | null,
+    why?: string | null,
+    how?: string | null,
     description?: string | null,
     // Paginate through all comments belonging to an individual post.
     comments?:  {
@@ -107,6 +111,8 @@ export type DeleteEventMutation = {
     name?: string | null,
     where?: string | null,
     when?: string | null,
+    why?: string | null,
+    how?: string | null,
     description?: string | null,
     // Paginate through all comments belonging to an individual post.
     comments?:  {
@@ -149,6 +155,8 @@ export type GetEventQuery = {
     name?: string | null,
     where?: string | null,
     when?: string | null,
+    why?: string | null,
+    how?: string | null,
     description?: string | null,
     // Paginate through all comments belonging to an individual post.
     comments?:  {
@@ -174,6 +182,8 @@ export type ListEventsQuery = {
       name?: string | null,
       where?: string | null,
       when?: string | null,
+      why?: string | null,
+      how?: string | null,
       description?: string | null,
     } | null > | null,
     nextToken?: string | null,

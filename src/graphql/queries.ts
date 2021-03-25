@@ -9,6 +9,8 @@ export const getEvent = /* GraphQL */ `
       name
       where
       when
+      why
+      how
       description
       comments {
         nextToken
@@ -28,6 +30,8 @@ export const listEvents = /* GraphQL */ `
         name
         where
         when
+        why
+        how
         description
       }
       nextToken
