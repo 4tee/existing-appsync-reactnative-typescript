@@ -8,7 +8,8 @@
  * @format
  */
 
-import React from 'react';
+import Amplify, {API, graphqlOperation} from 'aws-amplify';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -19,6 +20,10 @@ import {
   View,
 } from 'react-native';
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+import awsmobile from './aws-exports';
+import {listEvents} from './graphql/queries';
+
+Amplify.configure(awsmobile);
 
 const Section: React.FC<{
   title: string;
@@ -49,7 +54,22 @@ const Section: React.FC<{
 };
 
 const App = () => {
+  useEffect(() => {
+    async function getData() {
+      const events = await API.graphql(graphqlOperation(listEvents));
+      console.log(JSON.stringify(events));
+
+      const countries = events.data.listEvents.items.map(
+        (x: {where: any}) => x.where,
+      );
+      console.log(countries);
+      setData(countries);
+    }
+    getData();
+  }, []);
+
   const isDarkMode = useColorScheme() === 'dark';
+  const [data, setData] = useState();
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -66,10 +86,7 @@ const App = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
+          <Section title="Data">{JSON.stringify(data)}</Section>
         </View>
       </ScrollView>
     </SafeAreaView>
